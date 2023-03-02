@@ -40,4 +40,18 @@ protobuf {
 	protoc {
 		artifact = "com.google.protobuf:protoc:3.6.1"
 	}
+	plugins {
+		id("grpc") {
+			artifact = "io.grpc:protoc-gen-grpc-java:1.15.1"
+		}
+	}
+	generateProtoTasks {
+		all().forEach {
+			it.plugins {
+				id("grpc") {
+					outputSubDir = "$projectDir/src/kotlin"
+				}
+			}
+		}
+	}
 }
