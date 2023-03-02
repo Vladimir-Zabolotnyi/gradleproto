@@ -1,0 +1,41 @@
+syntax = "proto2";
+package firstgradleproject.api;
+
+option java_multiple_files = true;
+
+// Commands
+
+message CreateGameSessionCommand {
+  optional string gameUid = 1;
+  optional string playersUidS = 2;
+  optional uint64 sessionStartDate = 3;
+  optional uint64 sessionEndDate = 4;
+}
+
+// Queries
+
+message GetGameSessionsByPlayerIdQuery {
+  optional int32 page = 1;
+  optional int32 size = 2;
+  optional string playerUid = 3;
+}
+
+// Documents
+
+message GetGameSessionsByPlayerIdDocument {
+  repeated GameSessionDTO gameSessions = 1;
+}
+
+message CreateGameSessionDocument {
+  optional GameSessionDTO gameSession = 1;
+}
+
+//DTOs
+
+message GameSessionDTO{
+  optional string gameSessionUid = 1;
+  optional string gameUid = 2;
+  optional string playersUids = 3;
+  optional uint64 gameSessionStartDate = 4;
+  optional uint64 gameSessionEndDate = 5;
+}
